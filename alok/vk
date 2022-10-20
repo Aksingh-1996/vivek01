@@ -1,0 +1,260 @@
+SAMPLE.SH
+
+
+echo "first name: "
+read a										#to print name using variable
+											#variable a is for adding name value in text formatt
+echo "Hello,$a"
+
+
+---------------------------------------------------------------
+
+NAME.SH
+
+
+echo "you are talking to Mr. James"
+Designation="CEO of the company"
+readonly Designation
+Contact=7059517419
+readonly Contact
+echo "My Designation in the company is ,$Designation"
+echo "My contact number is ,$Contact"
+												#to print name using variable and to unset variable
+#echo "i am assistant manager Jones"
+Designation1="Assistant Manager"
+Contact1=8541912991
+#echo "My Designation is ,$Designation1"
+#echo "Contact number is ,$Contact1"
+
+#echo "$Designation, $Contact"
+
+unset Designation1
+echo "$Designation1"
+echo "$Contact1"
+
+------------------------------------------------------------------
+
+SVAR.SH
+
+echo "Current Filename: ,$0"
+echo "First Parameter is ,$1"
+echo "Second Parameter is ,$2"
+echo "Third Parameter is ,$3"					#To check parameter using Special variable
+
+echo "Quoted Parameter is , $@"
+echo "Quoted Parameter2 is , $*"
+
+echo "Count of Parameters, $#"
+
+
+------------------------------------------------------------------
+
+ARRAY.SH
+
+name[0]=alok
+name[1]=vivek
+name[2]=avi
+name[3]=rahul
+name[4]=dipu
+													#To put values using array
+echo "Hello,${name[0]}"
+echo "Hello,${name[2]}"
+echo "List of array values are: ${name[*]}"
+echo "List 2 array: ${name[@]}"
+
+
+---------------------------------------------------------------------------------
+
+ARITHMATICAL.SH
+
+echo "Enter the first number: "
+read a
+echo "Enter the second number: "
+read b
+															#Using ARITHMATICAL operator
+echo "Addition of above numbers are `expr $a + $b`"
+echo "Substraction of above numbers are `expr $a - $b`"
+echo "Multiplication of above numbers are `expr $a \* $b`"
+echo "Division of above numbers are `expr $b / $a`"
+echo "modulus of above numbers are `expr $b % $a`"
+
+
+------------------------------------------------------------------------------------
+ RELATIONAL.SH
+ 
+ echo "First Number: "
+read a
+echo "Second Number: "
+read b										#If...Else...fi.. statement usind relational opeartor.
+if [ $a -eq $b ]
+then
+        echo "Both values are equal"
+else
+        echo "Both values are not equal"
+
+fi
+
+----------------------------------------------------------------------------------
+
+STR.SH
+
+echo "Enter Filename: "
+read file
+if [ -f $file ]
+then
+        echo "is a file"
+else
+        echo "is a directory"
+fi								#it is using file string operator as -f, -g and -d to
+											checkfile, set and directory.
+if [ -g $file ]
+then
+        echo "is set"
+else
+        echo "is not set"
+fi
+
+if [ -d $file ]
+then
+        echo "is a directory"
+else
+        echo "is not a directory"
+fi
+
+
+-------------------------------------------------------------------------
+
+IF-ELSE.SH
+
+
+echo "Enter the word"
+read word
+
+if [[ $word == "b" ]]
+then													#if..elif..else..fi statement.
+        echo "The condition matches with b is true"
+elif [[ $word == "a" ]]
+then
+        echo "The condition matches with a is true"
+else
+        echo "Both condition a and b are not matches"
+fi
+
+
+-----------------------------------------------------------------------------
+
+CASE-ESAC.SH
+
+echo "Enter something: "
+read a
+														#using case and esac statement check value format.
+case $a in
+[a-z])
+        echo "You have enetered the input in small case"
+        ;;
+[A-Z])
+        echo "you have entered the input in capital case"
+        ;;
+[0-9])
+        echo "you have entered input in number format"
+        ;;
+?)
+        echo "you have entered input as a special character"
+        ;;
+*)
+        echo "you have entered more than one value"
+        ;;
+esac
+
+--------------------------------------------------------------------------------
+
+
+BREAK.SH
+
+a=0
+
+while [ $a -lt 10 ]
+do
+        echo $a
+        if [ $a -eq 5 ]
+        then
+        break
+        fi
+        a=`expr $a + 1`
+done
+							#using break keyword in while and for loop program.
+for a in 1 2 3
+do
+for b in 0 5
+do
+        if [ $a -eq 2 -a $b -eq 0 ]
+        then
+        break 2
+        else
+               echo "$a,$b"
+        fi
+done
+done
+
+------------------------------------------------------------------------
+
+
+CONTINUE.SH
+
+num="2 4 3 6 7 10 12 44 34 56 665"
+echo "$num"
+for nums in $num
+do													#using continue keyword in for loop.
+        Q=`expr $nums % 2`
+                if [ $Q -eq 0 ]
+                then
+                        echo "The number is even"
+                continue
+                fi
+        echo "This is an odd number"
+done
+
+----------------------------------------------------------------------
+
+
+SUBSTITUTION.SH
+
+dt=`date`
+echo "current Date is $dt"
+													#using variable in substitution.
+users=`who`
+echo "list of login user on terminal is $users"
+
+ut=`date ; uptime`
+echo "login date and time was $ut"
+
+ls
+who
+who am i
+
+-----------------------------------------------------------------------
+
+
+FUNCTION.SH
+
+hello(){
+        echo "Hello world $1 $2"
+        return 10
+}
+hello alok vivek
+ret=$?										#first we return function and then we calling function.
+echo "returning to return value $ret"
+
+func_1(){
+        echo "This is the first function"
+        func_2
+}
+func_2(){
+        echo "This is the second function"
+}
+func_1
+
+--------------------------------------------------------------------------
+
+
+
